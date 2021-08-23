@@ -13,11 +13,12 @@ export default function PostExcerpt({ postId }) {
     //? second entry is the id of post that we need
     const post = useSelector(state => selectPostById(state, postId));
 
+    
     return (
         <article className="post-excerpt">
             <h3>{post.title}</h3>
             <div>
-                <PostAuthor userId={post.id} />
+                <PostAuthor userId={post.user} />
                 <TimeAgo date={post.date} />
             </div>
             <p className="post-content">{post.content.substring(0,70)} </p>

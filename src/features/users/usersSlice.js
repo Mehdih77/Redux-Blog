@@ -11,6 +11,10 @@ const initialState = usersAdapter.getInitialState({
     status: "idle"
 });
 
+export const {
+    selectById: selectUserById
+} = usersAdapter.getSelectors(state => state.users);
+
 const usersSlice = createSlice({
     name: "users",
     initialState,

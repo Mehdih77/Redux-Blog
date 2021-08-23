@@ -1,5 +1,12 @@
+import moment from "moment";
+
 export default function TimeAgo({ date }) {
+
+    //using moment package
+    const momentDate = moment(date);
     return (
-        <span title="2021-02-06T21:36:04.822Z">&nbsp; <i>{date} minutes ago</i></span>
+        <span title={momentDate.toString()}>
+        &nbsp; <i>{momentDate.fromNow()}</i>
+        </span>
     )
 }

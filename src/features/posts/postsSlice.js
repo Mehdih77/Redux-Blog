@@ -18,6 +18,7 @@ export const {
     selectIds: selectPostIds
 } = postsAdapter.getSelectors(state => state.posts); // its help to chose the thing we want in state
 
+
 const postsSlice = createSlice({
     name: "posts",
     initialState,

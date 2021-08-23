@@ -1,11 +1,23 @@
+
+const reactionsIcons = {
+    eyes: "👀",
+    heart: "❤️",
+    hooray: "🎉",
+    rocket: "🚀",
+    thumbsUp: "👍",
+}
+
 export default function PostReactions({ reactions }) {
+
+    const reactionsBtns = Object.keys(reactions).map( reaction => (
+        <button key={reactions} type="button" className="muted-button reaction-button">
+         {reactionsIcons[reaction]} {reactions[reaction]}
+        </button>
+    ))
+
     return (
         <div>
-            <button type="button" className="muted-button reaction-button">👍 0</button>
-            <button type="button" className="muted-button reaction-button">🎉 0</button>
-            <button type="button" className="muted-button reaction-button">❤️ 0</button>
-            <button type="button" className="muted-button reaction-button">🚀 0</button>
-            <button type="button" className="muted-button reaction-button">👀 0</button>
+            {reactionsBtns}
         </div>
     )
 }
