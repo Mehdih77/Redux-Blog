@@ -1,9 +1,19 @@
+import Navbar from "./components/Navbar";
+import {BrowserRouter as Router} from 'react-router-dom'
+import PostsList from "./features/posts/PostsList";
+import AddPost from "./features/posts/AddPost";
 
 function App() {
   return (
-    <div className="App">
-      app
-    </div>
+    <>
+    <Router>
+      <Navbar />
+      <div className="App">
+       <AddPost />
+       <PostsList />
+      </div>
+    </Router>
+    </>
   );
 }
 

@@ -2,15 +2,21 @@ import { createSlice, createAsyncThunk, createEntityAdapter} from "@reduxjs/tool
 import { client } from '../../api/client';
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts" , async () => {
-    const response = await client.get('posts');
-    return response
+    return await client.get('posts');
 })
 
 // for better managing state & also it create entities by itself
 const postsAdapter = createEntityAdapter();
 const initialState = postsAdapter.getInitialState({
-    status: "idle"
+    status: "idle",
+    error: null
 });
+
+// for easy select data in state
+export const {
+    selectById: selectPostById,
+    selectIds: selectPostIds
+} = postsAdapter.getSelectors(state => state.posts); // its help to chose the thing we want in state
 
 const postsSlice = createSlice({
     name: "posts",
@@ -23,11 +29,11 @@ const postsSlice = createSlice({
         [fetchPosts.fulfilled]: (state,action) => {
         // state.entities = action.payload;
             postsAdapter.upsertMany(state, action.payload);
-            state.status = 'idle';
+            state.status = 'success';
         },
         [fetchPosts.rejected]: (state,action) => {
-            state.status = "idle";
-            console.log(action.payload);
+            state.status = "error";
+            state.error = action.payload
         }
     }
 })

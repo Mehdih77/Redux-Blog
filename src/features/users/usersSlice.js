@@ -2,8 +2,7 @@ import { createSlice, createAsyncThunk, createEntityAdapter } from "@reduxjs/too
 import { client } from "../../api/client";
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-    const response = await client.get("users");
-    return response;
+    return await client.get("users");
 })
 
 // for better managing state & also it create entities by itself
