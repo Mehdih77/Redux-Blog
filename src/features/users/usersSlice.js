@@ -12,7 +12,8 @@ const initialState = usersAdapter.getInitialState({
 });
 
 export const {
-    selectById: selectUserById
+    selectById: selectUserById,
+    selectAll: selectAllUsers,
 } = usersAdapter.getSelectors(state => state.users);
 
 const usersSlice = createSlice({
