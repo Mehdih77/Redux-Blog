@@ -16,7 +16,7 @@ module.exports = function () {
             id: faker.random.uuid(),
             title: faker.lorem.sentence(),
             content: faker.lorem.paragraph(),
-            date: faker.date.past(),
+            date: faker.date.past().getTime(),
             reactions: {
                 eyes: 0,
                 heart: 0,

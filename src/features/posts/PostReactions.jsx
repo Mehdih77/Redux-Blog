@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux"
+import { increaseReaction } from "./postsSlice";
 
 const reactionsIcons = {
     eyes: "👀",
@@ -7,10 +9,20 @@ const reactionsIcons = {
     thumbsUp: "👍",
 }
 
-export default function PostReactions({ reactions }) {
+export default function PostReactions({ reactions, postId }) {
+
+    const dispatch = useDispatch();
+
+    const handleIncreaseReaction = (postId,reaction) => {
+        dispatch(increaseReaction({postId,reaction}))
+    }
 
     const reactionsBtns = Object.keys(reactions).map( reaction => (
-        <button key={reactions} type="button" className="muted-button reaction-button">
+        <button 
+        onClick={() => handleIncreaseReaction(postId,reaction)}
+        key={reaction} 
+        type="button" 
+        className="muted-button reaction-button">
          {reactionsIcons[reaction]} {reactions[reaction]}
         </button>
     ))

@@ -12,7 +12,6 @@ export default function PostExcerpt({ postId }) {
     //? selectPostById(state, postId) >>>> first entry came from postsSlice that we make it
     //? second entry is the id of post that we need
     const post = useSelector(state => selectPostById(state, postId));
-
     
     return (
         <article className="post-excerpt">
@@ -22,7 +21,7 @@ export default function PostExcerpt({ postId }) {
                 <TimeAgo date={post.date} />
             </div>
             <p className="post-content">{post.content.substring(0,70)} </p>
-            <PostReactions reactions={post.reactions} />
+            <PostReactions reactions={post.reactions} postId={post.id} />
             <Link className="button muted-button" to={`/posts/${post.id}`} dideo-checked="true">View Post</Link>
         </article>
     )
