@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createEntityAdapter} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createEntityAdapter, createSelector} from "@reduxjs/toolkit";
 import { client } from '../../api/client';
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts" , async () => {
@@ -26,9 +26,17 @@ const initialState = postsAdapter.getInitialState({
 // for easy select data in state
 export const {
     selectById: selectPostById,
-    selectIds: selectPostIds
-} = postsAdapter.getSelectors(state => state.posts); // its help to chose the thing we want in state
+    selectIds: selectPostIds,
+    selectAll: selectAllPosts,
+} = postsAdapter.getSelectors(state => state.posts); //* its help to chose the thing we want in state
 
+
+// (posts, userId) >> posts came from selectAllPosts &&& userId came from (state,userId) => userId
+export const selectPostsByUser = createSelector(
+    selectAllPosts,
+    (state,userId) => userId,
+    (posts, userId) => posts.filter(post => post.user === userId)
+)
 
 const postsSlice = createSlice({
     name: "posts",
