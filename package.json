@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "json-server": "json-server --watch ./mock-api/db.js --port 5000 --delay 1000",
+    "json-server": "node ./mock-api/server.js",
     "dev": "concurrently \"npm start\" \"npm run json-server\""
   },
   "proxy": "http://localhost:5000",
